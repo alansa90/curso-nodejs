@@ -1,0 +1,14 @@
+h1 {
+  color: blue;
+}
+
+body {
+  background-color: red;
+}
+
+.head {
+  border-radius: 10px;
+  height: 50px;
+  width: 100px;
+  position: relative;
+}

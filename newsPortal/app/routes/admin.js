@@ -1,12 +1,25 @@
+const { check, validationResult } = require('express-validator')
 module.exports = (application) => {
 
   application.get('/addNews', (req, res) => {
     res.render('admin/addNews')
   })
 
-  application.post('/news/save', (req, res) => {
+  application.post('/news/save', [
+    check('title', 'title is required').notEmpty(),
+    check('resume', 'resume is required').notEmpty(),
+    check('resume', 'resume must contain between 10 and 100 characters').isLength(10, 100),
+    check('author', 'Author is required').notEmpty(),
+    check('dateNews', 'Date is required').notEmpty().isDate({ format: 'YYYY-MM-DD'})
+  ], (req, res) => {
     const news = req.body
-    
+   
+    const errors = validationResult(req)
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({errors: errors.array()})
+    }
+
     const connection = application.config.dbConnection()
     const newsModel = new application.app.models.NewsDAO(connection)
 

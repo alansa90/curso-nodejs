@@ -9,6 +9,7 @@ app.set('views', './app/views')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+
 consign()
   .include('app/routes')
   .then('config/dbConnection.js')

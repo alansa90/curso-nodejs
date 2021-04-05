@@ -1,15 +1,13 @@
-const dbConnection = require('../../config/dbConnection')
-
-const conn = dbConnection()
-
-module.exports = (app) => {
-
+module.exports = function (app) {
+  
   app.get('/news', (req, res) => {
-    conn.query('select * from news', (err, result) => {
-      res.render('news', {news: result})
-      // result.forEach(element => {
-      //   console.log(element)    
-      // })
+
+    const connection = app.config.dbConnection()
+
+    connection.query('select * from news', (err, result) => {
+      res.render('news/news', {news: result})
     })
+    
   })
+
 }

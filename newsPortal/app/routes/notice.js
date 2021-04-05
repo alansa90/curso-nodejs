@@ -1,13 +1,12 @@
-module.exports = (app) => {
+module.exports = (application) => {
   
-  app.get('/notice', (req, res) => {
+  application.get('/notice', (req, res) => {
 
-    const connection = app.config.dbConnection()
+    const connection = application.config.dbConnection()
+    const newsModel = new application.app.models.NewsDAO(connection)
 
-    connection.query('select * from news where idNews = 2', (err, result) => {
-      
-      res.render('news/notice', {notice: result})
+    newsModel.getNotice((err, result) => {
+            res.render('news/notice', {notice: result})
     })
   })
-
 }

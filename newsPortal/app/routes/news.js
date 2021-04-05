@@ -1,10 +1,11 @@
-module.exports = function (app) {
+module.exports = (application) => {
   
-  app.get('/news', (req, res) => {
+  application.get('/news', (req, res) => {
 
-    const connection = app.config.dbConnection()
+    const connection = application.config.dbConnection()
+    const newsModel = new application.app.models.NewsDAO(connection)
 
-    connection.query('select * from news', (err, result) => {
+    newsModel.getNews((err, result) => {
       res.render('news/news', {news: result})
     })
     

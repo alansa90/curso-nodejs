@@ -2,7 +2,7 @@ const { check, validationResult } = require('express-validator')
 module.exports = (application) => {
 
   application.get('/addNews', (req, res) => {
-    res.render('admin/addNews')
+    res.render('admin/addNews', { validation: {}, noticia: {} })
   })
 
   application.post('/news/save', [
@@ -17,7 +17,8 @@ module.exports = (application) => {
     const errors = validationResult(req)
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({errors: errors.array()})
+      res.render('admin/addNews', { validation: errors, notice: news })
+      return
     }
 
     const connection = application.config.dbConnection()

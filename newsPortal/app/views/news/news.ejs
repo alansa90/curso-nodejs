@@ -31,7 +31,7 @@
             <td scope="row"><%= news[i].news%></td>
             <td scope="row"><%= news[i].resume%></td>
             <td scope="row"><%= news[i].author%></td>
-            <td scope="row"><%= news[i].dateNews%></td>
+            <td scope="row"><%= new Date(news[i].dateNews).toLocaleDateString('pt-BR')%></td>
           </tr>
         <%}%>
         </tbody>

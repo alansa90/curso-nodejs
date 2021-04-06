@@ -12,26 +12,37 @@
 <body>
   <div class="container">
     <h1>Add news</h1>
+
+    <% if (validation) { %>
+      <ul>
+        <% for (let i = 0; i < validation.length; i++) { %>
+          <li>
+            <%= validation[i].msg %>
+          </li>
+        <% } %>
+      </ul>
+    <% } %>
+
     <form action="/news/save" method="post">
       <div class="mb-3">
         <label class="form-label">Title</label>
-        <input class="form-control"type="text" id="title" name="title" placeholder="Notice title">
+        <input class="form-control"type="text" id="title" value="<%= notice.title %>" name="title" placeholder="Notice title">
       </div>
       <div class="mb-3">
         <label class="form-label">News</label>
-        <textarea class="form-control" name="news" id="news" cols="30" rows="5"></textarea>
+        <textarea class="form-control" name="news" id="news" cols="30" rows="5"><%= notice.news %></textarea>
       </div>
       <div class="mb-3">
         <label class="form-label">Resume</label>
-        <input class="form-control"type="text" id="resume" name="resume" placeholder="News resume">
+        <input class="form-control"type="text" id="resume" value="<%= notice.resume %>" name="resume" placeholder="News resume">
       </div>
       <div class="mb-3">
         <label class="form-label">Author</label>
-        <input class="form-control"type="text" id="author" name="author" placeholder="Author name">
+        <input class="form-control"type="text" id="author" value="<%= notice.author %>" name="author" placeholder="Author name">
       </div>
       <div class="mb-3">
         <label class="form-label">Title</label>
-        <input class="form-control"type="date" id="dateNews" name="dateNews" placeholder="News date">
+        <input class="form-control"type="date" id="dateNews" value="<%= notice.dateNews %>" name="dateNews" placeholder="News date">
       </div>
       
       <input type="submit" value="send" class="form-control btn btn-primary">

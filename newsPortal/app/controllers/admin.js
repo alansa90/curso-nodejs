@@ -2,10 +2,9 @@ module.exports.addNews = function (application, req, res) {
   res.render('admin/addNews', { validation: {}, notice: {} })
 }
 
-module.exports.news_save = function (application, err, req, res) {
+module.exports.save = function (application, err, req, res) {
   const news = req.body
   const { errors } = err
-
   if (errors.length !== 0) {
     res.render('admin/addNews', { validation: errors, notice: news })
     return

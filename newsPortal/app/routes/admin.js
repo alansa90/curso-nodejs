@@ -1,4 +1,5 @@
 const { check, validationResult } = require('express-validator')
+
 module.exports = (application) => {
 
   application.get('/addNews', (req, res) => {
@@ -13,7 +14,7 @@ module.exports = (application) => {
     check('dateNews', 'Date is required').notEmpty().isDate({ format: 'YYYY-MM-DD'})
   ], (req, res) => {
     const errors = validationResult(req)
-    application.app.controllers.admin.news_save(application, errors, req, res)
+    application.app.controllers.admin.save(application, errors, req, res)
   })
     
 }

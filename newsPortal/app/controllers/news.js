@@ -7,7 +7,9 @@ module.exports.news = function (application, req, res) {
   })
 }
 
-module.exports.notice = function (idNews, application, req, res) {
+module.exports.notice = function (application, req, res) {
+
+  const { idNews } = req.query
 
   const connection = application.config.dbConnection()
   const newsModel = new application.app.models.NewsDAO(connection)

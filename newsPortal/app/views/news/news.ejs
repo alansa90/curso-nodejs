@@ -46,21 +46,29 @@
 
 
 	<div class="container">
-		<% news.forEach((item) => {%>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="noticia_wrapper">
-					<span class="noticia_autor"><%= item.author%></span>
-					<a href="/notice/<%= item.idNews%>" class="noticia_titulo"><%= item.title %></a>
-					<span class="noticia_data"><%= new Date(item.dateNews).toLocaleDateString('pt-BR') %></span>
-					<br />
-					<p class="noticia_resumo">
-						<%= item.resume %>
-					</p>
+		<% if (news) { %>
+			<% news.forEach((item)=> {%>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="noticia_wrapper">
+							<span class="noticia_autor">
+								<%= item.author%>
+							</span>
+							<a href="/notice?idNews=<%= item.idNews%>" class="noticia_titulo">
+								<%= item.title %>
+							</a>
+							<span class="noticia_data">
+								<%= new Date(item.dateNews).toLocaleDateString('pt-BR') %>
+							</span>
+							<br />
+							<p class="noticia_resumo">
+								<%= item.resume %>
+							</p>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<% }) %>
+				<% }) %>
+			<% } %>
 	</div>
 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
